@@ -13,6 +13,8 @@ from exceptions.CLI_Audio_Screen_Size_Exception import CLI_Audio_Screen_Size_Exc
 #class CLI_Audio__Exception(CLI_Audio_Exception):
  #   pass
 
+__author__ = "Eric Schoenborn, Sierra Dillivan, Emma Kane"
+
 class FrontEnd:
     """The front end of the application that the user interacts with. 
     Its allows for a menu and interacting with songs
@@ -33,8 +35,7 @@ class FrontEnd:
             if y < 20 or x <50:
                 raise CLI_Audio_Screen_Size_Exception
         except CLI_Audio_Screen_Size_Exception:
-            print("Increase your window size!")
-            return 0
+            sys.exit("Increase the window size!")
 
         self.stdscr.border()
         self.stdscr.addstr(0,0, "cli-audio",curses.A_REVERSE)
@@ -86,7 +87,10 @@ class FrontEnd:
         self.stdscr.touchwin()
         self.stdscr.refresh()
         self.player.stop()
-        self.player.play(path.decode(encoding="utf-8"))
+        try:
+            self.player.play(path.decode(encoding="utf-8"))
+        except:
+            print("File path does not exist.")
         
 
     def quit(self):

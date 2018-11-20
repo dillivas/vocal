@@ -7,6 +7,8 @@ import os
 from pathlib import Path
 from exceptions.CLI_Audio_File_Exception import CLI_Audio_File_Exception
 
+__author__ = "Eric Schoenborn, Sierra Dillivan, Emma Kane"
+
 class Player:
     """Controls the actions of the player, such as pausing, quitting, and playing"""
     def __init__(self):
